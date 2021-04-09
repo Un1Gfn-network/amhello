@@ -2,7 +2,7 @@
 
 CFLAGS, LDFLAGS -> Makefile.am -> automake -> Makefile.in
 
-( autoscan -> ) configure.ac -> autoheader -> config.h.in -> ... -> config.h
+( autoscan -> ) configure.ac -> autoheader -> config.h.in -> ./configure -> config.h
 
     tree -aC -I .git\|.gitignore
 
@@ -10,7 +10,7 @@ CFLAGS, LDFLAGS -> Makefile.am -> automake -> Makefile.in
 
     for var in \
       WARNINGS \
-      AUTOCONF ACLOCAL AUTOHEADER AUTOM4TE AUTOMAKE AUTOPOINT GTKDOCIZE INTLTOOLIZE LIBTOOLIZE M4 MAKE \
+      AUTOCONF ACLOCAL AUTOHEADER AUTOM4TE AUTOMAKE AUTOPOINT GTKDOCIZE INTLTOOLIZE LIBTOOLIZE M4 MAKE
     do
       # echo "${!var}"
       unset -v "$var"
