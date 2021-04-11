@@ -1,10 +1,10 @@
-|&nbsp;||
+|||
 |-|-|
 |autoscan  |-> stub configure.ac|
 |&nbsp;||
 |autoconf  |<del>configure.in</del><sup>1</sup> configure.ac -> configure  |
 |autoheader|<del>configure.in</del><sup>1</sup> configure.ac -> config.h.in|
-|automake  |Makefile.am -> Makefile.in|
+|automake  |configure.ac+Makefile.am -> Makefile.in|
 |&nbsp;||
 |./configure|Makefine.in -> Makefile<br>config.h.in -> config.h|
 
@@ -23,19 +23,21 @@ autoreconf(1) - regenerate the GNU Build System files - runs autoconf - optional
     done
     autoreconf -v -i -W all
 
-<div></div>
+<!-- <div></div> -->
+[./configure options](https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/configure-Invocation.html)
 
-<pre><code>env \
-  CC=gcc \
-  CFLAGS="-std=gnu11 -g -O0 -Wall -Wextra -Wno-unused-parameter -Winline -Wshadow -D_GNU_SOURCE -pthread" \
-./configure --prefix=/usr/local --enable-silent-rules <a href=https://www.gnu.org/software/automake/manual/html_node/Dependency-Tracking.html>--disable-dependency-tracking</a>
-</code></pre>
+    env \
+      CC=gcc \
+      CFLAGS="-std=gnu11 -g -O0 -Wall -Wextra -Wno-unused-parameter -Winline -Wshadow -D_GNU_SOURCE" \
+    ./configure --prefix=/usr/local
 
 [2.2.2 Standard Makefile Targets](https://www.gnu.org/software/automake/manual/html_node/Standard-Targets.html)
 
-    make all
-    make DESTDIR=/tmp/x install
-    make distclean # Makefile self-destructs
+* make all
+* make DESTDIR=/tmp/x install
+* make dist
+* make distcheck
+* make distclean
 
 ---
 
@@ -52,3 +54,5 @@ make gcc glibc binutils bison m4 gdb autotools(i.e. GNU Build System)
 [Automake manual](https://www.gnu.org/software/automake/manual)
 
 [--disable-dependency-tracking](https://www.gnu.org/software/automake/manual/html_node/Dependency-Tracking.html)
+
+https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Special-Chars-in-Variables.html
