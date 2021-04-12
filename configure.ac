@@ -15,7 +15,7 @@ AC_INIT([GNU Automake Hello World],
         [amhello],
         [https://github.com/Un1Gfn-network/autotools])
 dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Input.html#AC_005fCONFIG_005fSRCDIR
-AC_CONFIG_SRCDIR([./amhello/main.c])
+AC_CONFIG_SRCDIR([./amhello/amhello.c])
 AC_CONFIG_HEADERS([config.h:config.h.in])
 dnl https://www.gnu.org/software/automake/manual/html_node/List-of-Automake-options.html
 dnl    nostdinc    - remove -I. -I.. before CFLAGS
