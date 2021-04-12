@@ -27,7 +27,6 @@ autoreconf(1) - regenerate the GNU Build System files - runs autoconf - optional
 [./configure options](https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/configure-Invocation.html)
 
     env \
-      CC=gcc \
       CFLAGS="-std=gnu11 -g -O0 -Wall -Wextra -Wno-unused-parameter -Winline -Wshadow -D_GNU_SOURCE" \
     ./configure --prefix=/usr/local
 

@@ -31,7 +31,9 @@ AM_INIT_AUTOMAKE([foreign
                   1.16.3
                   -Wall
                   -Werror])
-AC_PROG_CC
+dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/C-Compiler.html#AC_005fPROG_005fCC
+dnl default "-g -O2"
+AC_PROG_CC([gcc])
 AC_CONFIG_FILES([
  Makefile
  amhello/Makefile
