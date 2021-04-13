@@ -34,20 +34,20 @@ autoreconf(1) - regenerate the GNU Build System files - runs autoconf - optional
       --prefix=/usr/local \
       CFLAGS="-std=gnu11 -g -O0 -Wall -Wextra -Wno-unused-parameter -Winline -Wshadow -D_GNU_SOURCE"
 
-[2.2.2 Standard Makefile Targets](https://www.gnu.org/software/automake/manual/html_node/Standard-Targets.html)
+<div></div>
 
-* make all
-* make DESTDIR=/tmp/x install
-* make dist
-* make distcheck
-* make distclean
+    make --no-print-directory all
+    make DESTDIR=/tmp/x install
+
+[2.2.2 Standard Makefile Targets](https://www.gnu.org/software/automake/manual/html_node/Standard-Targets.html)\
+&bullet; dist distcheck distclean
 
 ---
 
 m4 macro `PKG_CHECK_MODULES` pkg-config(1)
 
 [GNU toolchain](https://en.wikipedia.org/wiki/GNU_toolchain):\
-make gcc glibc binutils bison m4 gdb autotools(i.e. GNU Build System)
+&bullet; make gcc glibc binutils bison m4 gdb autotools(i.e. GNU Build System)
 
 [GNU Autotools](https://en.wikipedia.org/wiki/GNU_Autotools):\
 &bullet; [Autoconf](https://en.wikipedia.org/wiki/Autoconf) - autoconf autoheader autom4te autoreconf autoscan autoupdate ifnames\
@@ -63,7 +63,7 @@ https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Special-Cha
 [Automake primaries](https://www.gnu.org/software/automake/manual/html_node/amhello_0027s-Makefile_002eam-Setup-Explained.html)
 
 [auxiliary programs\
-ar-lib
+&dash; ar-lib
 compile
 config.guess
 config.sub
@@ -77,4 +77,7 @@ test-driver
 texinfo.tex
 ylwrap](https://www.gnu.org/software/automake/manual/html_node/Auxiliary-Programs.html)
 
-
+[make silent rules](https://www.gnu.org/software/automake/manual/html_node/Automake-Silent-Rules.html)\
+&bullet; AM_SILENT_RULES([yes]) in configure.ac\
+&bullet; ./configure --enable-silent-rules\
+&bullet; make V=0

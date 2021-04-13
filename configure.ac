@@ -44,6 +44,7 @@ AC_PROG_INSTALL
 dnl https://www.gnu.org/software/automake/manual/html_node/A-Library.html
 AC_PROG_RANLIB
 AM_PROG_AR
+AM_SILENT_RULES([yes])
 AC_CONFIG_FILES([
  Makefile
  amhello/Makefile
