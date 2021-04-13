@@ -1,2 +1,27 @@
+# https://www.gnu.org/software/automake/manual/html_node/amhello_0027s-Makefile_002eam-Setup-Explained.html
+# https://www.gnu.org/software/automake/manual/html_node/Uniform.html
+# xxx_YYY
+# xxx - xxxdir
+# YYY - primary
+
+# https://www.gnu.org/software/automake/manual/html_node/Program-Sources.html
+# check_bin_PROGRAMS = amhello_check
 bin_PROGRAMS = amhello
-amhello_SOURCES = amhello.c
+
+# https://www.gnu.org/software/automake/manual/html_node/Program-Sources.html
+# ... defaults to the single file hello.c ...
+# https://www.gnu.org/software/automake/manual/html_node/Default-_005fSOURCES.html
+# ... default ... compile a single C file ...
+# ... base name is the name of the target itself ...
+# ... extension replaced by AM_DEFAULT_SOURCE_EXT, which defaults to .c ...
+# https://www.gnu.org/software/automake/manual/html_node/true.html
+# ... implicitly assume that there is a source file named ...
+# amhello_SOURCES = amhello.c
+
+# https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.70/html_node/Defining-Directories.html
+# https://www.gnu.org/software/automake/manual/html_node/Flag-Variables-Ordering.html
+AM_CFLAGS = -DBINDIR='"$(bindir)"' -DAM_TEST_FLAG_A
+amhello_CFLAGS = $(AM_CFLAGS) -DAM_TEST_FLAG_B
+
+# https://www.gnu.org/software/automake/manual/html_node/Linking.html
+amhello_LDADD = ../lib/libamhello.a

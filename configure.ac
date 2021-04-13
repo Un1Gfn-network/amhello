@@ -17,6 +17,11 @@ AC_INIT([GNU Automake Hello World],
 dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Input.html#AC_005fCONFIG_005fSRCDIR
 AC_CONFIG_SRCDIR([./amhello/amhello.c])
 AC_CONFIG_HEADERS([config.h:config.h.in])
+dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Particular-Headers.html
+AC_CHECK_HEADER_STDBOOL
+AC_HEADER_ASSERT
+dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Generic-Headers.html
+dnl AC_CHECK_HEADER(abcdef.h, [/bin/false], [/bin/false])
 dnl https://www.gnu.org/software/automake/manual/html_node/List-of-Automake-options.html
 dnl    nostdinc    - remove -I. -I.. before CFLAGS
 dnl subdir-objects - subdir/file.cxx -> subdir/file.o
@@ -34,8 +39,14 @@ AM_INIT_AUTOMAKE([foreign
 dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/C-Compiler.html#AC_005fPROG_005fCC
 dnl default "-g -O2"
 AC_PROG_CC([gcc])
+dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Particular-Programs.html
+AC_PROG_INSTALL
+dnl https://www.gnu.org/software/automake/manual/html_node/A-Library.html
+AC_PROG_RANLIB
+AM_PROG_AR
 AC_CONFIG_FILES([
  Makefile
  amhello/Makefile
+ lib/Makefile
 ])
 AC_OUTPUT
