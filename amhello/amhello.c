@@ -18,6 +18,8 @@
 #include <string.h>
 #include <unistd.h>
 
+#include <libamhello.h>
+
 #define SZ 1024
 #define SELF "/proc/self/exe"
 

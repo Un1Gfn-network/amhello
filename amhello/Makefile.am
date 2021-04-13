@@ -20,8 +20,8 @@ bin_PROGRAMS = amhello
 
 # https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.70/html_node/Defining-Directories.html
 # https://www.gnu.org/software/automake/manual/html_node/Flag-Variables-Ordering.html
-AM_CFLAGS = -DBINDIR='"$(bindir)"' -DAM_TEST_FLAG_A
+AM_CFLAGS = -I$(top_srcdir)/include -DBINDIR='"$(bindir)"' -DAM_TEST_FLAG_A
 amhello_CFLAGS = $(AM_CFLAGS) -DAM_TEST_FLAG_B
 
 # https://www.gnu.org/software/automake/manual/html_node/Linking.html
-amhello_LDADD = ../lib/libamhello.a
+amhello_LDADD = $(top_srcdir)/lib/libamhello.a

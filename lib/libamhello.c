@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 
+#include <libamhello.h>
+
 #include "../config.h"
 
 void ver(){
