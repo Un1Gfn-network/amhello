@@ -16,6 +16,7 @@ AC_INIT([GNU Automake Hello World],
         [https://github.com/Un1Gfn-network/autotools])
 dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Input.html#AC_005fCONFIG_005fSRCDIR
 AC_CONFIG_SRCDIR([./amhello/amhello.c])
+dnl AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_HEADERS([config.h:config.h.in])
 dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Particular-Headers.html
 AC_CHECK_HEADER_STDBOOL
@@ -44,10 +45,21 @@ AC_PROG_INSTALL
 dnl https://www.gnu.org/software/automake/manual/html_node/A-Library.html
 AC_PROG_RANLIB
 AM_PROG_AR
+dnl pkg.m4(7)
+dnl /usr/share/aclocal/pkg.m4 [m4_define([PKG_MACROS_VERSION], [0.29.1])
+PKG_PREREQ(0.29.1)
+dnl pkg-config --version
+PKG_PROG_PKG_CONFIG(1.7.3)
+dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Preset-Output-Variables.html#index-LIBS-5
+dnl https://developer.gnome.org/anjuta-build-tutorial/stable/library-autotools.html.en
+dnl pkg-config --modversion libxml-2.0
+PKG_CHECK_MODULES(XML, libxml-2.0 >= 2.4)
+dnl https://gitlab.gnome.org/GNOME/libxml2/-/issues/219
+dnl AM_PATH_XML2(2.9.11)
 AM_SILENT_RULES([yes])
 AC_CONFIG_FILES([
  Makefile
- amhello/Makefile
  lib/Makefile
+ amhello/Makefile
 ])
 AC_OUTPUT

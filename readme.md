@@ -44,7 +44,7 @@ autoreconf(1) - regenerate the GNU Build System files - runs autoconf - optional
 
 ---
 
-m4 macro `PKG_CHECK_MODULES` pkg-config(1)
+`PKG_CHECK_MODULES()` - [pkg.m4(7)](https://man.archlinux.org/man/pkg.m4.7) - /usr/share/aclocal/pkg.m4
 
 [GNU toolchain](https://en.wikipedia.org/wiki/GNU_toolchain):\
 &bullet; make gcc glibc binutils bison m4 gdb autotools(i.e. GNU Build System)
@@ -81,3 +81,7 @@ ylwrap](https://www.gnu.org/software/automake/manual/html_node/Auxiliary-Program
 &bullet; AM_SILENT_RULES([yes]) in configure.ac\
 &bullet; ./configure --enable-silent-rules\
 &bullet; make V=0
+
+./configure --with-*package*\
+&bullet; [AC_ARG_WITH()](https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/External-Software.html#AC_005fARG_005fWITH)\
+&bullet; [PKG_WITH_MODULES()](https://man.archlinux.org/man/pkg.m4.7#PKG_WITH_MODULES(VARIABLE-PREFIX,_MODULES,_[ACTION-IF-FOUND],[ACTION-IF-NOT-FOUND],_[DESCRIPTION],_[DEFAULT]))

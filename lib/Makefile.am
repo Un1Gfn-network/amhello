@@ -1,6 +1,6 @@
 # https://www.gnu.org/software/automake/manual/html_node/A-Library.html
 
-# https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Preset-Output-Variables.html
+# https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Preset-Output-Variables.html#index-top_005fsrcdir
 AM_CFLAGS = -I$(top_srcdir)/include
 
 lib_LIBRARIES = libamhello.a
