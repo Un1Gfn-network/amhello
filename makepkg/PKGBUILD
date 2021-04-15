@@ -1,0 +1,43 @@
+# Maintainer: Darren Ng <$(base64 --decode <<<VW4xR2ZuQGdtYWlsLmNvbQo=)>
+
+pkgname=amhello-git
+pkgver=r15.f634253
+pkgrel=1
+pkgdesc="GNU Autotools demo"
+arch=($CARCH)
+url=https://www.gnu.org/software/automake/manual/html_node/Hello-World.html
+license=(AGPL3)
+depends=(glibc)
+makedepends=(git)
+provides=(${pkgname%-*})
+conflicts=(${provides[*]})
+source=(amhello::git+file:///home/darren/amhello)
+md5sums=(SKIP)
+
+# prepare(){
+# }
+
+pkgver(){
+  cd "$srcdir/${pkgname%-*}"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+build(){
+  cd "$srcdir/${pkgname%-*}"
+  autoreconf -v -i -Wall -Werror
+  ./configure --prefix=/usr
+  echo "XXX"
+  make --no-print-directory all
+}
+
+check(){
+  cd "$srcdir/${pkgname%-*}"
+  env LD_LIBRARY_PATH=lib/.libs/ amhello/.libs/amhello
+}
+
+package(){
+  cd "$srcdir/${pkgname%-*}"
+  make --no-print-directory DESTDIR="$pkgdir" install
+  # install -vDm755 ldid "$pkgdir/usr/bin/ldid"
+  # ln -sfv "ldid" "$pkgdir/usr/bin/ldid2"
+}

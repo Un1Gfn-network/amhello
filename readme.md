@@ -38,7 +38,7 @@ autoreconf(1) - regenerate the GNU Build System files - runs autoconf - optional
 
     make --no-print-directory all
     sh amhello/amhello
-    env LD_LIBRARY_PATH=./lib/.libs/ amhello/.libs/amhello
+    env LD_LIBRARY_PATH=lib/.libs/ amhello/.libs/amhello
 
 <div></div>
 

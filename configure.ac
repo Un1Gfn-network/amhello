@@ -14,6 +14,9 @@ AC_INIT([GNU Automake Hello World],
         [Un1Gfn@gmail.com],
         [amhello],
         [https://github.com/Un1Gfn-network/autotools])
+dnl https://stackoverflow.com/questions/11647208/where-to-add-a-cflag-such-as-std-gnu99-into-an-autotools-project
+dnl AX_APPEND_COMPILE_FLAGS([-D_GNU_SOURCE])
+CFLAGS+=" -D_GNU_SOURCE"
 dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Setting-Output-Variables.html#index-AC_005fSUBST-1
 AC_SUBST(REV_LIST_COUNT, m4_quote(m4_esyscmd_s([printf "r%s" "$(git rev-list --count HEAD)"])))
 dnl
@@ -85,3 +88,5 @@ dnl Remove -Wl,-rpath -Wl,/some/path (modified)
 AC_MSG_RESULT([configure: removing rpath from libtool...])
 sed -i.old s/'^hardcode_libdir_flag_spec.*$'/'hardcode_libdir_flag_spec="-D__LIBTOOL_IS_A_FOOL__"'/g libtool
 diff -u0 libtool.old libtool
+dnl cannot use [ "$A" -eq "$B" ] due to issue w/ brackets
+test "$?" -eq 1 || (exit -1)
