@@ -97,8 +97,10 @@ ylwrap](https://www.gnu.org/software/automake/manual/html_node/Auxiliary-Program
 table reference -
 [2.2.3](https://www.gnu.org/software/automake/manual/html_node/Standard-Directory-Variables.html) -
 [2.4.3](https://www.gnu.org/software/automake/manual/html_node/amhello_0027s-Makefile_002eam-Setup-Explained.html) -
-[8.4](https://www.gnu.org/software/automake/manual/html_node/Program-and-Library-Variables.html) -
-[12.2](https://www.gnu.org/software/automake/manual/html_node/The-Two-Parts-of-Install.html)
+[3.3](  https://www.gnu.org/software/automake/manual/html_node/Uniform.html) -
+[8.4](  https://www.gnu.org/software/automake/manual/html_node/Program-and-Library-Variables.html) -
+[12.2]( https://www.gnu.org/software/automake/manual/html_node/The-Two-Parts-of-Install.html)
+
 
     prefix     dir.install-exec  primary
     ------     ---               ---------
@@ -123,3 +125,14 @@ table reference -
 [lt_cv_sys_lib_search_path_spec\
 lt_cv_sys_lib_dlsearch_path_spec](https://www.gnu.org/software/libtool/manual/html_node/Configure-notes.html)\
 [LT_SYS_LIBRARY_PATH](https://www.gnu.org/software/libtool/manual/html_node/LT_005fINIT.html#index-LT_005fSYS_005fLIBRARY_005fPATH)
+
+
+     /bin/sh ../libtool   --mode=install /usr/bin/install -c   libamhello.la '/tmp/x/usr/local/lib'
+    libtool: install: /usr/bin/install -c .libs/libamhello-r13.so /tmp/x/usr/local/lib/libamhello-r13.so
+    libtool: install: (cd /tmp/x/usr/local/lib && { ln -s -f libamhello-r13.so libamhello.so || { rm -f libamhello.so && ln -s libamhello-r13.so libamhello.so; }; })
+    libtool: install: /usr/bin/install -c .libs/libamhello.lai /tmp/x/usr/local/lib/libamhello.la
+    libtool: warning: remember to run 'libtool --finish /usr/local/lib'
+    ...
+      /bin/sh ../libtool -v  --mode=install /usr/bin/install -c amhello '/tmp/x/usr/local/bin'
+    libtool: warning: '../lib/libamhello.la' has not been installed in '/usr/local/lib'
+    libtool: install: /usr/bin/install -c .libs/amhello /tmp/x/usr/local/bin/amhello

@@ -1,19 +1,18 @@
 # https://www.gnu.org/software/automake/manual/html_node/A-Library.html
 # https://www.gnu.org/software/automake/manual/html_node/Canonicalization.html
 
-# https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Preset-Output-Variables.html#index-top_005fsrcdir
-AM_CFLAGS = -I$(top_srcdir)/include
-AM_LIBTOOLFLAGS = -v
-
-# Without libtool
+# W/o libtool
 # lib_LIBRARIES = libamhello.a
 # noinst_LIBRARIES = libamhello.a
 # libamhello_a_SOURCES = libamhello.c
 
-# With libtool
-# pkglib_LTLIBRARIES = libamhello.la
-lib_LTLIBRARIES = libamhello.la
+# W/ libtool
+# pkglib_LTLIBRARIES = libamhello.la # $(libdir)/amhello/
+lib_LTLIBRARIES = libamhello.la      # $(libdir)/
 # libamhello_la_SOURCES = libamhello.c
+
+# https://developer.gnome.org/anjuta-build-tutorial/stable/library-autotools.html.en
+libamhello_la_CFLAGS = -I$(top_srcdir)/include -DBINDIR='"$(bindir)"'
 
 # https://www.gnu.org/software/automake/manual/html_node/Libtool-Flags.html
 # https://www.gnu.org/software/libtool/manual/html_node/Link-mode.html
@@ -23,5 +22,5 @@ lib_LTLIBRARIES = libamhello.la
 # -version-info
 # -version-number (obselete)
 libamhello_la_LDFLAGS = -release @REV_LIST_COUNT@
-# libamhello_la_LDFLAGS = -version-info 6:12:3
-# libamhello_la_LIBTOOLFLAGS = -v -Wall
+# libamhello_la_LDFLAGS = -version-info 6:12:4
+libamhello_la_LIBTOOLFLAGS = -v

@@ -1,6 +1,8 @@
 #ifndef LIBAMHELLO_H
 #define LIBAMHELLO_H
 
-extern void ver();
+void path();
+void ver();
+void uname2();
 
 #endif
