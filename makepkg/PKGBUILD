@@ -1,7 +1,7 @@
 # Maintainer: Darren Ng <$(base64 --decode <<<VW4xR2ZuQGdtYWlsLmNvbQo=)>
 
 pkgname=amhello-git
-pkgver=r15.f634253
+pkgver=0.1
 pkgrel=1
 pkgdesc="GNU Autotools demo"
 arch=($CARCH)

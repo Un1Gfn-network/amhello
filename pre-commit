@@ -1,13 +1,13 @@
 #!/bin/bash
-exit 1
 cd "$(git rev-parse --show-toplevel)/makepkg"
-file PKGBUILD
+# file PKGBUILD
 sed -i\~ s/'^pkgver=.*$'/'pkgver=0.1'/g PKGBUILD
 diff -u0 PKGBUILD{\~,}
-R="$?"
-if [ "$R" -eq 1 ]; then
-	rm -v PKGBUILD\~
-	exit 0
-else
-	exit 1
-fi
+git add -v PKGBUILD
+# R="$?"
+# if [ "$R" -eq 1 ]; then
+#   rm -v PKGBUILD\~
+#   exit 0
+# else
+#   { echo "$BASH_SOURCE: err 1"; exit 1; }
+# fi
