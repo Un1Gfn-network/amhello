@@ -14,10 +14,18 @@ AC_INIT([GNU Automake Hello World],
         [Un1Gfn@gmail.com],
         [amhello],
         [https://github.com/Un1Gfn-network/autotools])
+dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Setting-Output-Variables.html#index-AC_005fSUBST-1
+AC_SUBST(REV_LIST_COUNT, m4_quote(m4_esyscmd_s([printf "r%s" "$(git rev-list --count HEAD)"])))
+dnl
 dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Input.html#AC_005fCONFIG_005fSRCDIR
 AC_CONFIG_SRCDIR([./amhello/amhello.c])
 dnl AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_HEADERS([config.h:config.h.in])
+dnl libtoolize: Consider adding 'AC_CONFIG_MACRO_DIRS([m4])' to configure.ac
+dnl https://www.gnu.org/software/automake/manual/html_node/Local-Macros.html
+dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Input.html#index-AC_005fCONFIG_005fMACRO_005fDIRS-1
+AC_CONFIG_MACRO_DIRS([m4])
+dnl
 dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Particular-Headers.html
 AC_CHECK_HEADER_STDBOOL
 AC_HEADER_ASSERT
@@ -43,19 +51,28 @@ AC_PROG_CC([gcc])
 dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Particular-Programs.html
 AC_PROG_INSTALL
 dnl https://www.gnu.org/software/automake/manual/html_node/A-Library.html
-AC_PROG_RANLIB
+dnl libtoolize: 'AC_PROG_RANLIB' is rendered obsolete by 'LT_INIT'
+dnl AC_PROG_RANLIB
 AM_PROG_AR
-dnl pkg.m4(7)
-dnl /usr/share/aclocal/pkg.m4 [m4_define([PKG_MACROS_VERSION], [0.29.1])
-PKG_PREREQ(0.29.1)
-dnl pkg-config --version
-PKG_PROG_PKG_CONFIG(1.7.3)
-dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Preset-Output-Variables.html#index-LIBS-5
-dnl https://developer.gnome.org/anjuta-build-tutorial/stable/library-autotools.html.en
-dnl pkg-config --modversion libxml-2.0
-PKG_CHECK_MODULES(XML, libxml-2.0 >= 2.4)
-dnl https://gitlab.gnome.org/GNOME/libxml2/-/issues/219
-dnl AM_PATH_XML2(2.9.11)
+dnl
+dnl dnl https://gitlab.gnome.org/GNOME/libxml2/-/issues/219
+dnl dnl AM_PATH_XML2(2.9.11)
+dnl dnl pkg.m4(7)
+dnl dnl /usr/share/aclocal/pkg.m4 [m4_define([PKG_MACROS_VERSION], [0.29.1])
+dnl PKG_PREREQ(0.29.1)
+dnl dnl pkg-config --version
+dnl PKG_PROG_PKG_CONFIG(1.7.3)
+dnl dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Preset-Output-Variables.html#index-LIBS-5
+dnl dnl https://developer.gnome.org/anjuta-build-tutorial/stable/library-autotools.html.en
+dnl dnl pkg-config --modversion libxml-2.0
+dnl PKG_CHECK_MODULES(XML, libxml-2.0 >= 2.4)
+dnl
+dnl /usr/share/aclocal/libtool.m4
+LT_PREREQ([2.4.6])
+dnl https://www.gnu.org/software/libtool/manual/html_node/LT_005fINIT.html
+LT_INIT([shared
+         disable-static])
+dnl
 AM_SILENT_RULES([yes])
 AC_CONFIG_FILES([
  Makefile
@@ -63,3 +80,8 @@ AC_CONFIG_FILES([
  amhello/Makefile
 ])
 AC_OUTPUT
+dnl https://wiki.debian.org/RpathIssue#Patching_the_build-system
+dnl Remove -Wl,-rpath -Wl,/some/path (modified)
+AC_MSG_RESULT([configure: removing rpath from libtool...])
+sed -i.old s/'^hardcode_libdir_flag_spec.*$'/'hardcode_libdir_flag_spec="-D__LIBTOOL_IS_A_FOOL__"'/g libtool
+diff -u0 libtool.old libtool
