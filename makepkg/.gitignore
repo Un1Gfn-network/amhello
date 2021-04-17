@@ -1,4 +1,8 @@
 *
+# /amhello
+# /src/
+# /pkg/
+# /amhello-*-x86_64.pkg.tar
 
 !.gitignore
 !PKGBUILD

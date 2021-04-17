@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <sys/utsname.h>
 #include <unistd.h>
+// #include <sqlite3.h>
 
 #include <libamhello.h>
 
@@ -23,6 +24,11 @@ void path(){
   // https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.70/html_node/Defining-Directories.html
   printf("%s -> %s\n",buf,BINDIR"/amhello");
 }
+
+/*void dbver(){
+  printf("SQLite %s (%d)\n",sqlite3_libversion(),sqlite3_libversion_number());
+  puts(sqlite3_sourceid());
+}*/
 
 void ver(){
   //                            ./configure     autoreconf -i

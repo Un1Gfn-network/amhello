@@ -37,8 +37,9 @@ dnl AC_CHECK_HEADER(abcdef.h, [/bin/false], [/bin/false])
 dnl https://www.gnu.org/software/automake/manual/html_node/List-of-Automake-options.html
 dnl    nostdinc    - remove -I. -I.. before CFLAGS
 dnl subdir-objects - subdir/file.cxx -> subdir/file.o
+dnl https://www.gnu.org/software/automake/manual/html_node/Dependency-Tracking.html
+dnl no-dependencies
 AM_INIT_AUTOMAKE([foreign
-                  no-dependencies
                   no-dist
                   no-installinfo
                   no-installman
@@ -58,17 +59,19 @@ dnl libtoolize: 'AC_PROG_RANLIB' is rendered obsolete by 'LT_INIT'
 dnl AC_PROG_RANLIB
 AM_PROG_AR
 dnl
-dnl dnl https://gitlab.gnome.org/GNOME/libxml2/-/issues/219
-dnl dnl AM_PATH_XML2(2.9.11)
-dnl dnl pkg.m4(7)
-dnl dnl /usr/share/aclocal/pkg.m4 [m4_define([PKG_MACROS_VERSION], [0.29.1])
-dnl PKG_PREREQ(0.29.1)
-dnl dnl pkg-config --version
-dnl PKG_PROG_PKG_CONFIG(1.7.3)
-dnl dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Preset-Output-Variables.html#index-LIBS-5
-dnl dnl https://developer.gnome.org/anjuta-build-tutorial/stable/library-autotools.html.en
-dnl dnl pkg-config --modversion libxml-2.0
+dnl https://gitlab.gnome.org/GNOME/libxml2/-/issues/219
+dnl AM_PATH_XML2(2.9.11)
+dnl pkg.m4(7)
+dnl /usr/share/aclocal/pkg.m4 [m4_define([PKG_MACROS_VERSION], [0.29.1])
+PKG_PREREQ(0.29.1)
+dnl pkg-config --version
+PKG_PROG_PKG_CONFIG(1.7.3)
+dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Preset-Output-Variables.html#index-LIBS-5
+dnl https://developer.gnome.org/anjuta-build-tutorial/stable/library-autotools.html.en
+dnl pkg-config --modversion libxml-2.0
 dnl PKG_CHECK_MODULES(XML, libxml-2.0 >= 2.4)
+dnl PKG_CHECK_MODULES(SQLITE3, sqlite3 >= 3.35.4)
+PKG_CHECK_MODULES(LIBQRENCODE, libqrencode >= 4.1.1)
 dnl
 dnl /usr/share/aclocal/libtool.m4
 LT_PREREQ([2.4.6])

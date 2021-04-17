@@ -16,7 +16,8 @@ bin_PROGRAMS = amhello
 AM_CFLAGS = -I$(top_srcdir)/include
 
 # https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Preset-Output-Variables.html#index-top_005fsrcdir
-AM_LIBTOOLFLAGS = -v
+# ./configure LIBTOOLFLAGS="..."
+# AM_LIBTOOLFLAGS =
 
 # https://developer.gnome.org/anjuta-build-tutorial/stable/library-autotools.html.en
 # https://www.gnu.org/software/automake/manual/html_node/Linking.html

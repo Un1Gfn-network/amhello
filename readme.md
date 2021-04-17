@@ -14,8 +14,17 @@
 
     tree -aC -I .git\|.gitignore
 
+<!-- <div></div> -->
+
+    git clean -dfX && git status --ignored
+
 autoreconf(1) - regenerate the GNU Build System files - runs autoconf - optionally runs aclocal autoheader automake autopoint (formerly gettextize) libtoolize intltoolize gtkdocize
 
+[./configure options](https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/configure-Invocation.html) -
+[2.2.3 Standard Directory Variables](https://www.gnu.org/software/automake/manual/html_node/Standard-Directory-Variables.html) -
+[4.8.2 Installation Directory Variables](https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.70/html_node/Installation-Directory-Variables.html)
+
+<!--
     for var in \
       WARNINGS \
       AUTOCONF ACLOCAL AUTOHEADER AUTOM4TE AUTOMAKE AUTOPOINT GTKDOCIZE INTLTOOLIZE LIBTOOLIZE M4 MAKE
@@ -23,27 +32,30 @@ autoreconf(1) - regenerate the GNU Build System files - runs autoconf - optional
       # echo "${!var}"
       unset -v "$var"
     done
-    autoreconf -v -i -Wall -Werror
+-->
 
-<!-- <div></div> -->
-[./configure options](https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/configure-Invocation.html) -
-[2.2.3 Standard Directory Variables](https://www.gnu.org/software/automake/manual/html_node/Standard-Directory-Variables.html) -
-[4.8.2 Installation Directory Variables](https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.70/html_node/Installation-Directory-Variables.html)
+<div></div>
 
+    echo && \
+    autoreconf -v -i -Wall -Werror && \
+    echo && \
     ./configure \
       --prefix=/usr/local \
-      CFLAGS="-std=gnu11 -g -O0 -Wall -Wextra -Wno-unused-parameter -Winline -Wshadow -D_GNU_SOURCE"
+      CFLAGS="-std=gnu11 -g -O0 -Wall -Wextra -Wno-unused-parameter -Winline -Wshadow -D_GNU_SOURCE" \
+      LIBTOOLFLAGS="-v --no-silent" && \
+    echo
 
 <div></div>
 
     make --no-print-directory all
-    sh amhello/amhello
     env LD_LIBRARY_PATH=lib/.libs/ amhello/.libs/amhello
+    sh amhello/amhello
 
 <div></div>
 
-    make --no-print-directory DESTDIR=/tmp/x install
+    rm -rv /tmp/x && make --no-print-directory DESTDIR=/tmp/x install && tree -aC /tmp/x
     env LD_LIBRARY_PATH=/tmp/x/usr/local/lib /tmp/x/usr/local/bin/amhello
+    make DESTDIR=/tmp/x uninstall && tree -aC /tmp/x
 
 [2.2.2 Standard Makefile Targets](https://www.gnu.org/software/automake/manual/html_node/Standard-Targets.html)\
 &bullet; dist distcheck distclean
@@ -108,7 +120,7 @@ table reference -
     nobase_    lib_              _DEPENDENCIES
     nodist_    libexec_          _HEADERS
     notrans_   localstate_       _JAVA
-               pkglib_           _LIBRARIES
+    EXTRA_     pkglib_           _LIBRARIES
                sbin_             _LISP
                sysconf_          _LTLIBRARIES
                                  _MANS
@@ -125,7 +137,6 @@ table reference -
 [lt_cv_sys_lib_search_path_spec\
 lt_cv_sys_lib_dlsearch_path_spec](https://www.gnu.org/software/libtool/manual/html_node/Configure-notes.html)\
 [LT_SYS_LIBRARY_PATH](https://www.gnu.org/software/libtool/manual/html_node/LT_005fINIT.html#index-LT_005fSYS_005fLIBRARY_005fPATH)
-
 
      /bin/sh ../libtool   --mode=install /usr/bin/install -c   libamhello.la '/tmp/x/usr/local/lib'
     libtool: install: /usr/bin/install -c .libs/libamhello-r13.so /tmp/x/usr/local/lib/libamhello-r13.so
