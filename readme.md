@@ -53,7 +53,7 @@ autoreconf(1) - regenerate the GNU Build System files - runs autoconf - optional
 
 <div></div>
 
-    rm -rv /tmp/x && make --no-print-directory DESTDIR=/tmp/x install && tree -aC /tmp/x
+    rm -rf /tmp/x && make --no-print-directory DESTDIR=/tmp/x install && tree -aC /tmp/x
     env LD_LIBRARY_PATH=/tmp/x/usr/local/lib /tmp/x/usr/local/bin/amhello
     make DESTDIR=/tmp/x uninstall && tree -aC /tmp/x
 
@@ -147,3 +147,6 @@ lt_cv_sys_lib_dlsearch_path_spec](https://www.gnu.org/software/libtool/manual/ht
       /bin/sh ../libtool -v  --mode=install /usr/bin/install -c amhello '/tmp/x/usr/local/bin'
     libtool: warning: '../lib/libamhello.la' has not been installed in '/usr/local/lib'
     libtool: install: /usr/bin/install -c .libs/amhello /tmp/x/usr/local/bin/amhello
+
+GNU Make default implicit rules - [manual](https://www.gnu.org/software/make/manual/html_node/Catalogue-of-Rules.html)\
+src/default.c - [savannah](https://git.savannah.gnu.org/cgit/make.git/tree/src/default.c) - [github](https://github.com/mirror/make/blob/master/src/default.c)

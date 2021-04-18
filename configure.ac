@@ -82,13 +82,16 @@ dnl
 AM_SILENT_RULES([yes])
 AC_CONFIG_FILES([
  Makefile
+ include/Makefile
  lib/Makefile
  amhello/Makefile
 ])
 AC_OUTPUT
-dnl https://wiki.debian.org/RpathIssue#Patching_the_build-system
-dnl Remove -Wl,-rpath -Wl,/some/path (modified)
-AC_MSG_RESULT([configure: removing rpath from libtool...])
+dnl https://www.gnu.org/savannah-checkouts/gnu/m4/manual/m4-1.4.18/html_node/Location.html
+AC_MSG_RESULT([__file__:__line__: removing rpath from libtool...])
+dnl https://wiki.debian.org/RpathIssue#Patching_the_build-system (modified)
+dnl Remove -Wl,-rpath -Wl,/some/path
+dnl AC_MSG_RESULT([configure: removing rpath from libtool...])
 sed -i.old s/'^hardcode_libdir_flag_spec.*$'/'hardcode_libdir_flag_spec="-D__LIBTOOL_IS_A_FOOL__"'/g libtool
 diff -u0 libtool.old libtool
 dnl cannot use [ "$A" -eq "$B" ] due to issue w/ brackets

@@ -35,6 +35,8 @@ libamhello_la_LDFLAGS = -release @REV_LIST_COUNT@
 # libamhello_la_LDFLAGS = -version-info 6:12:4
 
 # https://stackoverflow.com/questions/23685981/what-is-the-difference-between-ldadd-and-libadd
+# https://www.gnu.org/software/automake/manual/html_node/Program-and-Library-Variables.html#index-maude_005fLIBADD-1
+# https://www.gnu.org/software/automake/manual/html_node/Program-and-Library-Variables.html#index-maude_005fLDADD-1
 # Use the LIBADD primary for libraries, and LDADD for executables
 libamhello_la_LIBADD = $(LIBQRENCODE_LIBS)
 
