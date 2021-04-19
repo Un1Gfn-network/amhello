@@ -4,7 +4,7 @@
 # config.status
 
 # temporary wrapper script for .libs/amhello
-/amhello/amhello
+/bin/amhello
 
 # Blobs
 .deps/

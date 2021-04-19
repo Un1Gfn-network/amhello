@@ -14,12 +14,11 @@
 
 #include <libamhello.h>
 
-#define SZ 1024
 #define SELF "/proc/self/exe"
 
 void path(){
-  char buf[SZ]={};
-  assert(1<=readlink(SELF,buf,SZ));
+  char buf[PATH_BUF_SZ]={};
+  assert(1<=readlink(SELF,buf,PATH_BUF_SZ));
   // amhello/Makefile.am
   // https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.70/html_node/Defining-Directories.html
   printf("%s -> %s\n",buf,BINDIR"/amhello");

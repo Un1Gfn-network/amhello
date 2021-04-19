@@ -21,9 +21,11 @@ dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Setting
 AC_SUBST(REV_LIST_COUNT, m4_quote(m4_esyscmd_s([printf "r%s" "$(git rev-list --count HEAD)"])))
 dnl
 dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Input.html#AC_005fCONFIG_005fSRCDIR
-AC_CONFIG_SRCDIR([./amhello/amhello.c])
+AC_CONFIG_SRCDIR([./bin/amhello.c])
 dnl AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_HEADERS([config.h:config.h.in])
+dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Autoheader-Macros.html#index-AH_005fBOTTOM-1
+AH_BOTTOM([#define PATH_BUF_SZ 1024])
 dnl libtoolize: Consider adding 'AC_CONFIG_MACRO_DIRS([m4])' to configure.ac
 dnl https://www.gnu.org/software/automake/manual/html_node/Local-Macros.html
 dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Input.html#index-AC_005fCONFIG_005fMACRO_005fDIRS-1
@@ -84,7 +86,7 @@ AC_CONFIG_FILES([
  Makefile
  include/Makefile
  lib/Makefile
- amhello/Makefile
+ bin/Makefile
 ])
 AC_OUTPUT
 dnl https://www.gnu.org/savannah-checkouts/gnu/m4/manual/m4-1.4.18/html_node/Location.html
