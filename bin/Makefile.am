@@ -34,3 +34,12 @@ amhello_LDADD = $(top_srcdir)/lib/lib$(PACKAGE).la
 # https://www.gnu.org/software/automake/manual/html_node/Extending.html#index-dist_002dhook-1
 install-exec-hook:
 	ln -sv $(PACKAGE)$(EXEEXT) $(DESTDIR)$(bindir)/amreset$(EXEEXT)
+
+# !-e  !-L    ?
+# ---------------------------------
+#  X    X    error (normal symlink)
+#  X    O    error (normal file)
+#  O    O    skip  (non-exist)
+#  O    X    rm -v (broken symlink)
+uninstall-hook:
+	test ! -e $(DESTDIR)$(bindir)/amreset$(EXEEXT) && { test ! -L $(DESTDIR)$(bindir)/amreset$(EXEEXT) || rm -v $(DESTDIR)$(bindir)/amreset$(EXEEXT); }

@@ -47,14 +47,25 @@ autoreconf(1) - regenerate the GNU Build System files - runs autoconf - optional
 
 <div></div>
 
+    make --no-print-directory all V=1
     make --no-print-directory all
     env LD_LIBRARY_PATH=lib/.libs/ bin/.libs/amhello
+
+<div></div>
+
+    sudo make --no-print-directory install
+    tree -aC /usr/local
+    env LD_LIBRARY_PATH=/usr/local/lib amhello
+    env LD_LIBRARY_PATH=/usr/local/lib amreset
+    sudo make --no-print-directory uninstall
+    tree -aC /usr/local
 
 <div></div>
 
     rm -rf /tmp/x && make --no-print-directory DESTDIR=/tmp/x install && tree -aC /tmp/x
     env LD_LIBRARY_PATH=/tmp/x/usr/local/lib /tmp/x/usr/local/bin/amhello
     make DESTDIR=/tmp/x uninstall && tree -aC /tmp/x
+    rm -rv /tmp/x
 
 [2.2.2 Standard Makefile Targets](https://www.gnu.org/software/automake/manual/html_node/Standard-Targets.html)\
 &bullet; dist distcheck distclean
