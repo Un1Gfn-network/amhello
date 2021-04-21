@@ -9,7 +9,8 @@
 # W/ libtool
 # noinst_LTLIBRARIES = libamhello.la
 # pkglib_LTLIBRARIES = libamhello.la # $(libdir)/amhello/
-lib_LTLIBRARIES = libamhello.la      # $(libdir)/
+# lib_LTLIBRARIES = libamhello.la    # $(libdir)/
+lib_LTLIBRARIES = libamhello.la libamhijack.la
 
 # https://www.gnu.org/software/automake/manual/html_node/Conditional-Sources.html
 # EXTRA_libamhello_la_SOURCES = qr.c
@@ -23,6 +24,7 @@ libamhello_la_SOURCES += qr.c
 # https://www.gnu.org/software/automake/manual/html_node/Renamed-Objects.html
 # libamhello.c -> libamhello_la-libamhello.o
 libamhello_la_CFLAGS = -I$(top_srcdir)/include -DBINDIR='"$(bindir)"' $(LIBQRENCODE_CFLAGS)
+libamhijack_la_CFLAGS = -I$(top_srcdir)/include
 
 # https://www.gnu.org/software/automake/manual/html_node/Libtool-Flags.html
 # https://www.gnu.org/software/libtool/manual/html_node/Link-mode.html
@@ -31,8 +33,11 @@ libamhello_la_CFLAGS = -I$(top_srcdir)/include -DBINDIR='"$(bindir)"' $(LIBQRENC
 # -release
 # -version-info
 # -version-number (obselete)
-libamhello_la_LDFLAGS = -release @REV_LIST_COUNT@
 # libamhello_la_LDFLAGS = -version-info 6:12:4
+libamhello_la_LDFLAGS = -release @REV_LIST_COUNT@
+# libamhijack_la_LDFLAGS = -release ""
+# libamhijack_la_LDFLAGS = -version-info 0:0:0
+libamhijack_la_LDFLAGS = -avoid-version
 
 # https://stackoverflow.com/questions/23685981/what-is-the-difference-between-ldadd-and-libadd
 # https://www.gnu.org/software/automake/manual/html_node/Program-and-Library-Variables.html#index-maude_005fLIBADD-1

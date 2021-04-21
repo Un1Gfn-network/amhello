@@ -60,6 +60,7 @@ dnl https://www.gnu.org/software/automake/manual/html_node/A-Library.html
 dnl libtoolize: 'AC_PROG_RANLIB' is rendered obsolete by 'LT_INIT'
 dnl AC_PROG_RANLIB
 AM_PROG_AR
+AC_PROG_SED
 dnl
 dnl https://gitlab.gnome.org/GNOME/libxml2/-/issues/219
 dnl AM_PATH_XML2(2.9.11)
@@ -82,12 +83,11 @@ LT_INIT([shared
          disable-static])
 dnl
 AM_SILENT_RULES([yes])
-AC_CONFIG_FILES([
- Makefile
- include/Makefile
- lib/Makefile
- bin/Makefile
-])
+dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Configuration-Files.html
+AC_CONFIG_FILES([Makefile
+                 include/Makefile
+                 lib/Makefile
+                 bin/Makefile])
 AC_OUTPUT
 dnl https://www.gnu.org/savannah-checkouts/gnu/m4/manual/m4-1.4.18/html_node/Location.html
 AC_MSG_RESULT([__file__:__line__: removing rpath from libtool...])

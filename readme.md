@@ -51,21 +51,23 @@ autoreconf(1) - regenerate the GNU Build System files - runs autoconf - optional
     make --no-print-directory all
     env LD_LIBRARY_PATH=lib/.libs/ bin/.libs/amhello
 
-<div></div>
-
-    sudo make --no-print-directory install
-    tree -aC /usr/local
-    env LD_LIBRARY_PATH=/usr/local/lib amhello
-    env LD_LIBRARY_PATH=/usr/local/lib amreset
-    sudo make --no-print-directory uninstall
-    tree -aC /usr/local
-
-<div></div>
+[Staged Installs](https://www.gnu.org/software/automake/manual/html_node/Staged-Installs.html) - [DESTDIR](https://www.gnu.org/software/automake/manual/html_node/DESTDIR.html)
 
     rm -rf /tmp/x && make --no-print-directory DESTDIR=/tmp/x install && tree -aC /tmp/x
     env LD_LIBRARY_PATH=/tmp/x/usr/local/lib /tmp/x/usr/local/bin/amhello
     make DESTDIR=/tmp/x uninstall && tree -aC /tmp/x
     rm -rv /tmp/x
+
+<!-- <div></div> -->
+[install{{,dirs,-strip},-{data,exec}-hook}](https://www.gnu.org/software/automake/manual/html_node/Install-Rules-for-the-User.html)
+
+    sudo make --no-print-directory install-strip
+    tree -aC /usr/local
+    env LD_LIBRARY_PATH=/usr/local/lib amhello
+    env LD_LIBRARY_PATH=/usr/local/lib amreset
+    env LD_LIBRARY_PATH=/usr/local/lib amhijack
+    sudo make --no-print-directory uninstall
+    tree -aC /usr/local
 
 [2.2.2 Standard Makefile Targets](https://www.gnu.org/software/automake/manual/html_node/Standard-Targets.html)\
 &bullet; dist distcheck distclean
@@ -160,3 +162,5 @@ lt_cv_sys_lib_dlsearch_path_spec](https://www.gnu.org/software/libtool/manual/ht
 
 GNU Make default implicit rules - [manual](https://www.gnu.org/software/make/manual/html_node/Catalogue-of-Rules.html)\
 src/default.c - [savannah](https://git.savannah.gnu.org/cgit/make.git/tree/src/default.c) - [github](https://github.com/mirror/make/blob/master/src/default.c)
+
+[BUILT_SOURCES](https://www.gnu.org/software/automake/manual/html_node/Sources.html) - [example](https://www.gnu.org/software/automake/manual/html_node/Built-Sources-Example.html)

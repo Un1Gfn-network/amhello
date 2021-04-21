@@ -1,5 +1,18 @@
 # check_bin_PROGRAMS = amhello_check
 
+# https://www.gnu.org/software/automake/manual/html_node/Scripts.html
+# https://stackoverflow.com/questions/54405359/how-to-recursively-substitute-variable-for-a-path-in-bash-variable-in-configure
+nodist_bin_SCRIPTS = amhijack
+CLEANFILES = $(bin_SCRIPTS)
+EXTRA_DIST = amhijack.in
+amhijack: amhijack.in Makefile
+	$(SED) \
+		-e 's,[@]libdir2[@],$(libdir),g' \
+		-e 's,[@]bindir2[@],$(bindir),g' \
+		<amhijack.in >amhijack
+	diff amhijack{.in,}; test "$$?" -eq 1
+	chmod +x amhijack
+
 # bin/Makefile.am:26: warning: variable 'amhello_LDADD' is defined but no program or
 # bin/Makefile.am:26: library has 'amhello' as canonical name (possible typo)
 # bin_PROGRAMS = $(PACKAGE)$(EXEEXT)

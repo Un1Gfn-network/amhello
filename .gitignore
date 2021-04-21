@@ -3,10 +3,12 @@
 # git clean -n   # Dry-run
 # config.status
 
-# temporary wrapper script for .libs/amhello
+# Wrapper script for .libs/amhello created by libtool
+# Not working wince we killed hardcode_libdir_flag_spec in libtool with configure.ac
 /bin/amhello
 
 # Blobs
+/bin/amhijack
 .deps/
 .libs/
 *.o
