@@ -16,7 +16,9 @@
 
 <!-- <div></div> -->
 
-    git clean -dfX && git status --ignored
+    cd "$(git rev-parse --show-toplevel)" && \
+    git clean -dfX && \
+    git status --ignored
 
 autoreconf(1) - regenerate the GNU Build System files - runs autoconf - optionally runs aclocal autoheader automake autopoint (formerly gettextize) libtoolize intltoolize gtkdocize
 
@@ -37,9 +39,11 @@ autoreconf(1) - regenerate the GNU Build System files - runs autoconf - optional
 <div></div>
 
     echo && \
+    cd "$(git rev-parse --show-toplevel)" && \
     autoreconf -v -i -Wall -Werror && \
     echo && \
-    ./configure \
+    cd "$(git rev-parse --show-toplevel)"/build && \
+    ../configure \
       --prefix=/usr/local \
       CFLAGS="-std=gnu11 -g -O0 -Wall -Wextra -Wno-unused-parameter -Winline -Wshadow -D_GNU_SOURCE" \
       LIBTOOLFLAGS="-v --no-silent" && \
@@ -47,9 +51,15 @@ autoreconf(1) - regenerate the GNU Build System files - runs autoconf - optional
 
 <div></div>
 
+    cd "$(git rev-parse --show-toplevel)"/build
+    proxychains wget https://raw.githubusercontent.com/sindresorhus/github-markdown-css/main/github-markdown.css
     make --no-print-directory all V=1
     make --no-print-directory all
+
+<div></div>
+
     env LD_LIBRARY_PATH=lib/.libs/ bin/.libs/amhello
+    make check
 
 [Staged Installs](https://www.gnu.org/software/automake/manual/html_node/Staged-Installs.html) - [DESTDIR](https://www.gnu.org/software/automake/manual/html_node/DESTDIR.html)
 
@@ -63,9 +73,16 @@ autoreconf(1) - regenerate the GNU Build System files - runs autoconf - optional
 
     sudo make --no-print-directory install-strip
     tree -aC /usr/local
+
+<div></div>
+
     env LD_LIBRARY_PATH=/usr/local/lib amhello
     env LD_LIBRARY_PATH=/usr/local/lib amreset
     env LD_LIBRARY_PATH=/usr/local/lib amhijack
+    make installcheck
+
+<div></div>
+
     sudo make --no-print-directory uninstall
     tree -aC /usr/local
 

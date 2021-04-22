@@ -3,14 +3,14 @@
 # https://www.gnu.org/software/automake/manual/html_node/Scripts.html
 # https://stackoverflow.com/questions/54405359/how-to-recursively-substitute-variable-for-a-path-in-bash-variable-in-configure
 nodist_bin_SCRIPTS = amhijack
-CLEANFILES = $(bin_SCRIPTS)
-EXTRA_DIST = amhijack.in
-amhijack: amhijack.in Makefile
-	$(SED) \
+CLEANFILES = $(nodist_bin_SCRIPTS)
+EXTRA_DIST = $(srcdir)/amhijack.template
+amhijack: $(srcdir)/amhijack.template Makefile
+	$(SED) <$(srcdir)/amhijack.template \
 		-e 's,[@]libdir2[@],$(libdir),g' \
 		-e 's,[@]bindir2[@],$(bindir),g' \
-		<amhijack.in >amhijack
-	diff amhijack{.in,}; test "$$?" -eq 1
+		>amhijack
+	diff $(srcdir)/amhijack.template amhijack; test "$$?" -eq 1
 	chmod +x amhijack
 
 # bin/Makefile.am:26: warning: variable 'amhello_LDADD' is defined but no program or
@@ -28,9 +28,11 @@ bin_PROGRAMS = amhello
 # ... implicitly assume that there is a source file named ...
 # amhello_SOURCES = amhello.c
 
+# https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Preset-Output-Variables.html#index-top_005fbuilddir-1
+# Variable: top_builddir
 # https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.70/html_node/Defining-Directories.html
 # https://www.gnu.org/software/automake/manual/html_node/Flag-Variables-Ordering.html
-AM_CFLAGS = -I$(top_srcdir)/include -DBINDIR='"$(bindir)"'
+AM_CFLAGS = -I$(top_srcdir)/include -iquote $(top_builddir) -DBINDIR='"$(bindir)"'
 
 # https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Preset-Output-Variables.html#index-top_005fsrcdir
 # ./configure LIBTOOLFLAGS="..."
@@ -40,7 +42,7 @@ AM_CFLAGS = -I$(top_srcdir)/include -DBINDIR='"$(bindir)"'
 # https://www.gnu.org/software/automake/manual/html_node/Linking.html
 # amhello_LDFLAGS: program-specific linker flags
 # amhello_LDADD:   -l -L -dlopen -dlpreopen
-amhello_LDADD = $(top_srcdir)/lib/lib$(PACKAGE).la
+amhello_LDADD = $(top_builddir)/lib/lib$(PACKAGE).la
 
 # http://gnu-automake.7480.n7.nabble.com/local-vs-hook-td17002.html
 # https://www.gnu.org/software/automake/manual/html_node/Extending-Installation.html

@@ -1,7 +1,7 @@
 // https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Configuration-Headers.html
 // ... ‘#include’ the configuration header file before any other header files ...
 #ifdef HAVE_CONFIG_H
-#include "../config.h"
+#include "config.h"
 #else
 #error
 #endif

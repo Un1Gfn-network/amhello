@@ -20,10 +20,12 @@ libamhello_la_SOURCES += qr.c
 # ./configure LIBTOOLFLAGS="..."
 # libamhello_la_LIBTOOLFLAGS =
 
+# https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Preset-Output-Variables.html#index-top_005fbuilddir-1
+# Variable: top_builddir
 # https://developer.gnome.org/anjuta-build-tutorial/stable/library-autotools.html.en
 # https://www.gnu.org/software/automake/manual/html_node/Renamed-Objects.html
 # libamhello.c -> libamhello_la-libamhello.o
-libamhello_la_CFLAGS = -I$(top_srcdir)/include -DBINDIR='"$(bindir)"' $(LIBQRENCODE_CFLAGS)
+libamhello_la_CFLAGS = -I$(top_srcdir)/include -iquote $(top_builddir) -DBINDIR='"$(bindir)"' $(LIBQRENCODE_CFLAGS)
 libamhijack_la_CFLAGS = -I$(top_srcdir)/include
 
 # https://www.gnu.org/software/automake/manual/html_node/Libtool-Flags.html
