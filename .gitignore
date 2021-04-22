@@ -8,6 +8,8 @@
 /bin/amhello
 
 # Blobs
+/github-markdown.css
+/readme.html
 /bin/amhijack
 .deps/
 .libs/

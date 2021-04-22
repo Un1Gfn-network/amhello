@@ -162,5 +162,3 @@ lt_cv_sys_lib_dlsearch_path_spec](https://www.gnu.org/software/libtool/manual/ht
 
 GNU Make default implicit rules - [manual](https://www.gnu.org/software/make/manual/html_node/Catalogue-of-Rules.html)\
 src/default.c - [savannah](https://git.savannah.gnu.org/cgit/make.git/tree/src/default.c) - [github](https://github.com/mirror/make/blob/master/src/default.c)
-
-[BUILT_SOURCES](https://www.gnu.org/software/automake/manual/html_node/Sources.html) - [example](https://www.gnu.org/software/automake/manual/html_node/Built-Sources-Example.html)
