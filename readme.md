@@ -1,16 +1,16 @@
+# [amhello](https://github.com/Un1Gfn-network/amhello)
+
 [the flow](https://www.gnu.org/savannah-checkouts/gnu/autoconf/manual/autoconf-2.70/html_node/Making-configure-Scripts.html)
 
 |||
 |-|-|
 |autoscan  |-> stub configure.ac|
-|&nbsp;||
 |autoconf  |<del>configure.in</del><sup>1</sup> configure.ac -> configure  |
 |autoheader|<del>configure.in</del><sup>1</sup> configure.ac -> config.h.in|
 |automake  |configure.ac+Makefile.am -> Makefile.in|
-|&nbsp;||
 |./configure|Makefine.in -> Makefile<br>config.h.in -> config.h|
 
-\[1\] deprecated
+<sub>\[1\] deprecated</sub>
 
     tree -aC -I .git\|.gitignore
 
@@ -20,7 +20,9 @@
     git clean -dfX && \
     git status --ignored
 
-autoreconf(1) - regenerate the GNU Build System files - runs autoconf - optionally runs aclocal autoheader automake autopoint (formerly gettextize) libtoolize intltoolize gtkdocize
+autoreconf(1) - regenerate the GNU Build System files\
+&bullet; runs autoconf\
+&bullet; optionally runs aclocal autoheader automake autopoint (formerly gettextize) libtoolize intltoolize gtkdocize
 
 [./configure options](https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/configure-Invocation.html) -
 [2.2.3 Standard Directory Variables](https://www.gnu.org/software/automake/manual/html_node/Standard-Directory-Variables.html) -
@@ -49,7 +51,7 @@ autoreconf(1) - regenerate the GNU Build System files - runs autoconf - optional
       LIBTOOLFLAGS="-v --no-silent" && \
     echo
 
-<div></div>
+[2.2.2 Standard Makefile Targets](https://www.gnu.org/software/automake/manual/html_node/Standard-Targets.html)
 
     cd "$(git rev-parse --show-toplevel)"/build
     proxychains wget https://raw.githubusercontent.com/sindresorhus/github-markdown-css/main/github-markdown.css
@@ -86,26 +88,23 @@ autoreconf(1) - regenerate the GNU Build System files - runs autoconf - optional
     sudo make --no-print-directory uninstall
     tree -aC /usr/local
 
-[2.2.2 Standard Makefile Targets](https://www.gnu.org/software/automake/manual/html_node/Standard-Targets.html)\
-&bullet; dist distcheck distclean
-
 ---
 
 `PKG_CHECK_MODULES()` - [pkg.m4(7)](https://man.archlinux.org/man/pkg.m4.7) - /usr/share/aclocal/pkg.m4
 
-[GNU toolchain](https://en.wikipedia.org/wiki/GNU_toolchain):\
+[GNU toolchain](https://en.wikipedia.org/wiki/GNU_toolchain) -\
 &bullet; make gcc glibc binutils bison m4 gdb autotools(i.e. GNU Build System)
 
-[GNU Autotools](https://en.wikipedia.org/wiki/GNU_Autotools):\
+[GNU Autotools](https://en.wikipedia.org/wiki/GNU_Autotools) -\
 &bullet; [Autoconf](https://en.wikipedia.org/wiki/Autoconf) - autoconf autoheader autom4te autoreconf autoscan autoupdate ifnames\
 &bullet; [Automake](https://en.wikipedia.org/wiki/Automake) - aclocal automake\
 &bullet; [Libtool](https://en.wikipedia.org/wiki/Libtool)   - libtool libtoolize
 
-[Automake manual](https://www.gnu.org/software/automake/manual)
-
 [--disable-dependency-tracking](https://www.gnu.org/software/automake/manual/html_node/Dependency-Tracking.html)
 
-https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Special-Chars-in-Variables.html
+
+[7.3 Special Characters in Output Variables](https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Special-Chars-in-Variables.html)\
+[26.4 Limitations on File Names](https://www.gnu.org/software/automake/manual/html_node/Limitations-on-File-Names.html)
 
 [auxiliary programs\
 &dash; ar-lib
@@ -135,7 +134,7 @@ ylwrap](https://www.gnu.org/software/automake/manual/html_node/Auxiliary-Program
 
 [libraries are programs with multiple entry points, and more formally defined interfaces](https://www.gnu.org/software/libtool/manual/html_node/Libtool-paradigm.html)
 
-table reference -
+prefixes, directory variables and primaries -
 [2.2.3](https://www.gnu.org/software/automake/manual/html_node/Standard-Directory-Variables.html) -
 [2.4.3](https://www.gnu.org/software/automake/manual/html_node/amhello_0027s-Makefile_002eam-Setup-Explained.html) -
 [3.3](  https://www.gnu.org/software/automake/manual/html_node/Uniform.html) -
@@ -167,15 +166,10 @@ table reference -
 lt_cv_sys_lib_dlsearch_path_spec](https://www.gnu.org/software/libtool/manual/html_node/Configure-notes.html)\
 [LT_SYS_LIBRARY_PATH](https://www.gnu.org/software/libtool/manual/html_node/LT_005fINIT.html#index-LT_005fSYS_005fLIBRARY_005fPATH)
 
-     /bin/sh ../libtool   --mode=install /usr/bin/install -c   libamhello.la '/tmp/x/usr/local/lib'
-    libtool: install: /usr/bin/install -c .libs/libamhello-r13.so /tmp/x/usr/local/lib/libamhello-r13.so
-    libtool: install: (cd /tmp/x/usr/local/lib && { ln -s -f libamhello-r13.so libamhello.so || { rm -f libamhello.so && ln -s libamhello-r13.so libamhello.so; }; })
-    libtool: install: /usr/bin/install -c .libs/libamhello.lai /tmp/x/usr/local/lib/libamhello.la
-    libtool: warning: remember to run 'libtool --finish /usr/local/lib'
-    ...
-      /bin/sh ../libtool -v  --mode=install /usr/bin/install -c amhello '/tmp/x/usr/local/bin'
-    libtool: warning: '../lib/libamhello.la' has not been installed in '/usr/local/lib'
-    libtool: install: /usr/bin/install -c .libs/amhello /tmp/x/usr/local/bin/amhello
+GNU Make default implicit rules -\
+&bullet; [manual](https://www.gnu.org/software/make/manual/html_node/Catalogue-of-Rules.html)\
+&bullet; src/default.c - [savannah](https://git.savannah.gnu.org/cgit/make.git/tree/src/default.c) - [github](https://github.com/mirror/make/blob/master/src/default.c)
 
-GNU Make default implicit rules - [manual](https://www.gnu.org/software/make/manual/html_node/Catalogue-of-Rules.html)\
-src/default.c - [savannah](https://git.savannah.gnu.org/cgit/make.git/tree/src/default.c) - [github](https://github.com/mirror/make/blob/master/src/default.c)
+[26.9 Handling Tools that Produce Many Outputs](https://www.gnu.org/software/automake/manual/html_node/Multiple-Outputs.html)
+
+[AM_DEFAULT_SOURCE_EXT](https://www.gnu.org/software/automake/manual/html_node/Default-_005fSOURCES.html)

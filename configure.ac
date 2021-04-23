@@ -63,12 +63,12 @@ AM_PROG_AR
 AC_PROG_SED
 dnl
 dnl https://gitlab.gnome.org/GNOME/libxml2/-/issues/219
+dnl pkg-config --version
+PKG_PROG_PKG_CONFIG(1.7.3)
 dnl AM_PATH_XML2(2.9.11)
 dnl pkg.m4(7)
 dnl /usr/share/aclocal/pkg.m4 [m4_define([PKG_MACROS_VERSION], [0.29.1])
 PKG_PREREQ(0.29.1)
-dnl pkg-config --version
-PKG_PROG_PKG_CONFIG(1.7.3)
 dnl https://www.gnu.org/software/autoconf/manual/autoconf-2.70/html_node/Preset-Output-Variables.html#index-LIBS-5
 dnl https://developer.gnome.org/anjuta-build-tutorial/stable/library-autotools.html.en
 dnl pkg-config --modversion libxml-2.0
